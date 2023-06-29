@@ -2,15 +2,15 @@ import cluster from "cluster";
 import { createServer, IncomingMessage, ServerResponse } from "http";
 import { cpus } from "os";
 import { SERVER_PORT, SERVERS_PORT } from "../data/const";
-import { Router } from "../router/router";
+import { Routes } from "../router/router";
 import 'dotenv/config';
 
 import { IServerDataBase } from "../types/inteface";
 
-let SERVER_DATA_BASE: IServerDataBase = [];
+export let SERVER_DATA_BASE: IServerDataBase = [];
 
 const server = createServer((request: IncomingMessage, response: ServerResponse) => {
-  Router(request, response)
+  Routes(request, response, SERVER_DATA_BASE)
 })
 
 export const initServer = (): void => {
